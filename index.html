@@ -16,25 +16,71 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.7;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
+            color: #1a202c;
+            background: #f3f4f6;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .site-header {
+            background: #111827;
+            color: #e5e7eb;
+            padding: 14px 32px;
+            border-bottom: 1px solid #1f2937;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .site-logo {
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: #f9fafb;
+        }
+
+        .site-nav {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+
+        .site-nav a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        .site-nav a:hover {
+            color: #e5e7eb;
+        }
+
+        .main-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px 16px 48px;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
+            gap: 32px;
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
             background: white;
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 32px 32px 40px;
+            border-radius: 12px;
+            box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
+            border: 1px solid #e5e7eb;
         }
 
         header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 30px;
-            border-bottom: 3px solid #667eea;
+            text-align: left;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
         }
 
         h1 {
@@ -117,18 +163,86 @@
             margin: 5px 5px 5px 0;
         }
 
-        footer {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #e2e8f0;
-            text-align: center;
-            color: #718096;
+        .meta {
             font-size: 0.9em;
+            color: #6b7280;
+            margin-top: 10px;
+        }
+
+        .meta span + span::before {
+            content: "·";
+            margin: 0 6px;
+        }
+
+        .sidebar {
+            align-self: flex-start;
+            position: sticky;
+            top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .widget {
+            background: white;
+            border-radius: 12px;
+            padding: 18px 18px 20px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+        }
+
+        .widget-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .toc {
+            list-style: none;
+            margin: 0;
+            padding-left: 0;
+            font-size: 0.9rem;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #4b5563;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: #1d4ed8;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 18px 32px;
+            border-top: 1px solid #e5e7eb;
+            background: #f9fafb;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.85em;
         }
 
         @media (max-width: 768px) {
+            .main-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
             .container {
-                padding: 30px 20px;
+                padding: 24px 18px 28px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .site-header {
+                padding: 12px 16px;
             }
 
             h1 {
@@ -144,21 +258,51 @@
             }
         }
     </style>
+        .model-block {
+            margin: 30px 0;
+        }
+
+        .model-block p {
+            margin-top: 10px;
+        }
+
+        .widget-text {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="page">
+        <div class="site-header">
+            <div class="site-logo">EDU • AI</div>
+            <nav class="site-nav">
+                <a href="#why">Зачем ИИ студентам</a>
+                <a href="#tools">Сервисы</a>
+                <a href="#models">Модели</a>
+                <a href="#ethics">Этика</a>
+            </nav>
+        </div>
+
+        <main class="main-layout">
+            <article class="container">
         <header>
             <h1>Как современный студент использует ИИ в учебной и научно-исследовательской деятельности</h1>
             <p class="subtitle">Практические инструменты и критический подход</p>
+            <div class="meta">
+                <span>Образование и технологии</span>
+                <span>2025 год</span>
+            </div>
         </header>
 
-        <section>
+        <section id="why">
             <p>Искусственный интеллект стал важным инструментом для студентов, которые занимаются курсовыми, дипломными проектами, научными статьями и учебными заданиями. Нейросети помогают экономить время, разбираться в сложных темах, писать код, анализировать данные и структурировать материалы. Однако важным навыком становится не просто использование сервисов, а их осознанное и критическое применение.</p>
 
             <p>Эта статья показывает, как современные студенты используют ИИ в учебной и исследовательской работе, какие сервисы реально помогают и какие модели лежат в основе популярных инструментов.</p>
         </section>
 
-        <section>
+        <section id="tools">
             <h2>1. Почему студентам важны ИИ инструменты</h2>
             
             <div class="highlight-box">
@@ -254,33 +398,33 @@
             </div>
         </section>
 
-        <section>
+        <section id="models">
             <h2>3. Модели искусственного интеллекта, которые используют студенты</h2>
             
             <p>Чтобы применять ИИ более осознанно, студенту полезно понимать, какие модели стоят за сервисами.</p>
 
-            <div style="margin: 30px 0;">
+            <div class="model-block">
                 <span class="model-tag">Claude Sonnet 4.5</span>
-                <p style="margin-top: 10px;">Модель с глубоким пониманием контекста. Подходит для анализа больших объемов текста, оптимизации научных работ, структурирования материалов.</p>
+                <p>Модель с глубоким пониманием контекста. Подходит для анализа больших объемов текста, оптимизации научных работ, структурирования материалов.</p>
             </div>
 
-            <div style="margin: 30px 0;">
+            <div class="model-block">
                 <span class="model-tag">Claude Haiku 4.5</span>
-                <p style="margin-top: 10px;">Быстрая модель для простых задач, черновиков, объяснений и обработки коротких фрагментов.</p>
+                <p>Быстрая модель для простых задач, черновиков, объяснений и обработки коротких фрагментов.</p>
             </div>
 
-            <div style="margin: 30px 0;">
+            <div class="model-block">
                 <span class="model-tag">GPT 5.1</span>
-                <p style="margin-top: 10px;">Одна из самых продвинутых моделей для работы с кодом, логикой и научными формулировками. Используется в обучении программированию, подготовке докладов, решении исследовательских задач.</p>
+                <p>Одна из самых продвинутых моделей для работы с кодом, логикой и научными формулировками. Используется в обучении программированию, подготовке докладов, решении исследовательских задач.</p>
             </div>
 
-            <div style="margin: 30px 0;">
+            <div class="model-block">
                 <span class="model-tag">Codex</span>
-                <p style="margin-top: 10px;">Основа современных ассистентов программирования. Служит примером того, как развиваются технологии генеративного программирования.</p>
+                <p>Основа современных ассистентов программирования. Служит примером того, как развиваются технологии генеративного программирования.</p>
             </div>
         </section>
 
-        <section>
+        <section id="ethics">
             <h2>4. Как студенту использовать нейросети осознанно</h2>
             
             <div class="highlight-box">
@@ -314,8 +458,29 @@
             <p>Сервисы создают структурные планы, упрощают формулировки и помогают сократить текст.</p>
         </section>
 
+            </article>
+
+            <aside class="sidebar">
+                <div class="widget">
+                    <div class="widget-title">О статье</div>
+                    <p class="widget-text">Материал о том, как студенты используют нейросети в учебе и исследованиях: от написания кода до подготовки научных текстов.</p>
+                </div>
+
+                <div class="widget">
+                    <div class="widget-title">Содержание</div>
+                    <ul class="toc">
+                        <li><a href="#why">1. Почему студентам важны ИИ инструменты</a></li>
+                        <li><a href="#tools">2. Сервисы и ассистенты</a></li>
+                        <li><a href="#models">3. Модели ИИ</a></li>
+                        <li><a href="#ethics">4. Осознанное использование</a></li>
+                        <li><a href="#">5. Этапы научной работы</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+
         <footer>
-            <p>© 2025 | Статья об использовании ИИ в образовании</p>
+            <p>© 2025 · Образование и искусственный интеллект · dr3ladwyn.github.io/gitpg</p>
         </footer>
     </div>
 </body>

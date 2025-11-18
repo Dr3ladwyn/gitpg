@@ -16,6 +16,11 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.7;
+            color: #e5e7eb;
+            background: #020617;
+        }
+
+        body.light-theme {
             color: #1a202c;
             background: #f3f4f6;
         }
@@ -27,7 +32,7 @@
         }
 
         .site-header {
-            background: #111827;
+            background: #020617;
             color: #e5e7eb;
             padding: 14px 32px;
             border-bottom: 1px solid #1f2937;
@@ -41,6 +46,31 @@
             color: #f9fafb;
         }
 
+        .theme-toggle {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        .theme-toggle button {
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid #4b5563;
+            background: #020617;
+            color: #e5e7eb;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        body.light-theme .theme-toggle button {
+            background: #f9fafb;
+            color: #111827;
+            border-color: #d1d5db;
+        }
+
         .main-layout {
             max-width: none;
             width: 100%;
@@ -49,13 +79,17 @@
         }
 
         .container {
-            background: white;
+            background: #020617;
             padding: 32px 40px 40px;
             border-radius: 0;
             box-shadow: none;
             border: none;
             max-width: 100%;
             margin: 0;
+        }
+
+        body.light-theme .container {
+            background: white;
         }
 
         header {
@@ -109,19 +143,19 @@
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            border-left: 4px solid #667eea;
+            background: linear-gradient(135deg, #1d4ed81a 0%, #7c3aed1a 100%);
+            border-left: 4px solid #4f46e5;
             padding: 20px;
             margin: 30px 0;
             border-radius: 5px;
         }
 
         .service-card {
-            background: #f7fafc;
+            background: #020617;
             padding: 25px;
             margin: 20px 0;
             border-radius: 10px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #1f2937;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -131,7 +165,7 @@
         }
 
         .service-card h3 {
-            color: #667eea;
+            color: #93c5fd;
             margin-top: 0;
         }
 
@@ -160,14 +194,24 @@
             display: none;
         }
 
+        body.light-theme .service-card {
+            background: #f7fafc;
+            border-color: #e2e8f0;
+        }
+
         footer {
             margin-top: auto;
             padding: 18px 32px;
             border-top: 1px solid #e5e7eb;
-            background: #f9fafb;
+            background: #020617;
             text-align: center;
-            color: #6b7280;
+            color: #9ca3af;
             font-size: 0.85em;
+        }
+
+        body.light-theme footer {
+            background: #f9fafb;
+            color: #6b7280;
         }
 
         @media (max-width: 768px) {
@@ -200,11 +244,41 @@
             }
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const body = document.body;
+            const toggleBtn = document.getElementById('theme-toggle-btn');
+            const audio = new Audio('flashbank.mp3');
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                body.classList.add('light-theme');
+                if (toggleBtn) toggleBtn.textContent = 'Темная тема';
+            }
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    const isLight = body.classList.toggle('light-theme');
+                    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+                    toggleBtn.textContent = isLight ? 'Темная тема' : 'Светлая тема';
+
+                    if (isLight) {
+                        audio.currentTime = 0;
+                        audio.play().catch(() => {});
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="page">
         <div class="site-header">
             <div class="site-logo">EDU · AI</div>
+            <div class="theme-toggle">
+                <span>Тема</span>
+                <button id="theme-toggle-btn">Светлая тема</button>
+            </div>
         </div>
 
         <main class="main-layout">
